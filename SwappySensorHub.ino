@@ -45,6 +45,9 @@
 #define RETURN_SUCCESS  0x01
 #define RETURN_ERROR    0x02
 
+// Count Sensors:
+#define COUNT_SENSORS 0x05
+
 AfstandsSensor ultrasonicSensorLeft(ULTRASONIC_LEFT_TRIGGER, ULTRASONIC_LEFT_ECHO); 
 AfstandsSensor ultrasonicSensorMiddle(ULTRASONIC_MIDDLE_TRIGGER, ULTRASONIC_MIDDLE_ECHO); 
 AfstandsSensor ultrasonicSensorRight(ULTRASONIC_RIGHT_TRIGGER, ULTRASONIC_RIGHT_ECHO); 
@@ -167,28 +170,29 @@ void processSpiCommand()
     case GET_ALL_SENSOR_DATA:
     {
       spi_send_buffer[0] = RETURN_SUCCESS;
-      spi_send_buffer[1] = ULTRASONIC_SENSOR_LEFT;
-      spi_send_buffer[2] = (byte)distanceLeft;
-      spi_send_buffer[3] = ((byte)distanceLeft) >> 8;
-      spi_send_buffer[4] = ((byte)distanceLeft) >> 16;
-      spi_send_buffer[5] = ((byte)distanceLeft) >> 24;
-      spi_send_buffer[6] = ULTRASONIC_SENSOR_MIDDLE;
-      spi_send_buffer[7] = (byte)distanceMiddle;
-      spi_send_buffer[8] = ((byte)distanceMiddle) >> 8;
-      spi_send_buffer[9] = ((byte)distanceMiddle) >> 16;
-      spi_send_buffer[10] = ((byte)distanceMiddle) >> 24;
-      spi_send_buffer[11] = ULTRASONIC_SENSOR_RIGHT;
-      spi_send_buffer[12] = (byte)distanceRight;
-      spi_send_buffer[13] = ((byte)distanceRight) >> 8;
-      spi_send_buffer[14] = ((byte)distanceRight) >> 16;
-      spi_send_buffer[15] = ((byte)distanceRight) >> 24;
-      spi_send_buffer[16] = RADAR_SENSOR;
-      spi_send_buffer[17] = (byte)motionDetected;
-      spi_send_buffer[18] = TEMPERATURE_SENSOR;
-      spi_send_buffer[19] = (byte)temperature;
-      spi_send_buffer[20] = ((byte)temperature) >> 8;
-      spi_send_buffer[21] = ((byte)temperature) >> 16;
-      spi_send_buffer[22] = ((byte)temperature) >> 24;
+      spi_send_buffer[1] = COUNT_SENSORS;
+      spi_send_buffer[2] = ULTRASONIC_SENSOR_LEFT;
+      spi_send_buffer[3] = (byte)distanceLeft;
+      spi_send_buffer[4] = ((byte)distanceLeft) >> 8;
+      spi_send_buffer[5] = ((byte)distanceLeft) >> 16;
+      spi_send_buffer[6] = ((byte)distanceLeft) >> 24;
+      spi_send_buffer[7] = ULTRASONIC_SENSOR_MIDDLE;
+      spi_send_buffer[8] = (byte)distanceMiddle;
+      spi_send_buffer[9] = ((byte)distanceMiddle) >> 8;
+      spi_send_buffer[10] = ((byte)distanceMiddle) >> 16;
+      spi_send_buffer[11] = ((byte)distanceMiddle) >> 24;
+      spi_send_buffer[12] = ULTRASONIC_SENSOR_RIGHT;
+      spi_send_buffer[13] = (byte)distanceRight;
+      spi_send_buffer[14] = ((byte)distanceRight) >> 8;
+      spi_send_buffer[15] = ((byte)distanceRight) >> 16;
+      spi_send_buffer[16] = ((byte)distanceRight) >> 24;
+      spi_send_buffer[17] = RADAR_SENSOR;
+      spi_send_buffer[18] = (byte)motionDetected;
+      spi_send_buffer[19] = TEMPERATURE_SENSOR;
+      spi_send_buffer[20] = (byte)temperature;
+      spi_send_buffer[21] = ((byte)temperature) >> 8;
+      spi_send_buffer[22] = ((byte)temperature) >> 16;
+      spi_send_buffer[23] = ((byte)temperature) >> 24;
       break;      
     }
     case CALIBRATE_DEVICE:
